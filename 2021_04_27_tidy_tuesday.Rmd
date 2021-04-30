@@ -1,0 +1,54 @@
+---
+title: "Netflix Tittles"
+date: 2021-04-30
+output: html_output
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(tidytuesdayR)
+library(ggplot2)
+theme_set(theme_light())
+
+
+```
+
+# Load the weekly Data
+
+```{r Load}
+
+tt <- tt_load("2021-04-20")
+tt
+
+```
+
+
+```{r}
+netflix_df <- tt$netflix_titles
+netflix_df %>% 
+  glimpse()
+```
+
+```{r}
+netflix_df %>% 
+  count(type) %>% 
+  ggplot()+
+  geom_col(aes(type, n))+
+  labs(x = "Type", y =NULL)
+
+
+```
+
+
+
+
+```{r}
+
+ggsave(
+  filename = "My TidyTuesday Plot.png",
+  device = "png")
+
+```
